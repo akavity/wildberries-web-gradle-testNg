@@ -16,8 +16,8 @@ public class SortTest extends BaseTest {
     FiltersBlockSteps filtersBlockSteps = new FiltersBlockSteps();
     CatalogSteps catalogSteps = new CatalogSteps();
 
-    @TestData(folder = "sortTest", jsonFile = "priceData", model = "PriceData")
-    @Test(description = "Check that product prices are within the limit", dataProviderClass = JsonReader.class, dataProvider = "getData")
+    @TestData(jsonFile = "priceData", model = "PriceData", folder = "sortTest")
+    @Test(description = "Sort products by price within set limits", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void sortProductsByPrice(PriceData price) {
         headerSteps.clickCatalogButton();
         navigationSteps.clickMainListItem(price.getMainListItem());

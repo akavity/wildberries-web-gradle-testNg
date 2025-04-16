@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+group = 'org.akavity'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:7.10.2'
+    implementation 'org.testng:testng:7.10.2'
+    implementation 'com.codeborne:selenide:7.7.1'
+    implementation 'io.qameta.allure:allure-selenide:2.29.1'
+    testImplementation 'io.qameta.allure:allure-testng:2.25.0'
+    testImplementation 'io.qameta.allure:allure-commandline:2.25.0'
+    implementation 'org.aspectj:aspectjweaver:1.9.20.1'
+    testImplementation 'io.qameta.allure:allure-java-commons:2.25.0'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'com.google.code.gson:gson:2.12.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/testNg.xml'
+    }
+    systemProperty 'file.encoding', 'UTF-8'
+    ignoreFailures = true
+    systemProperties System.getProperties()
+}

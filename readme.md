@@ -37,3 +37,4 @@
 
 ## Report:
 
+![gradle testNg](https://github.com/akavity/wildberries-web-gradle-testNg/raw/develop/report3.jpg)

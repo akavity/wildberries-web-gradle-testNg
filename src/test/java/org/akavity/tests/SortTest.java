@@ -17,7 +17,7 @@ public class SortTest extends BaseTest {
     CatalogSteps catalogSteps = new CatalogSteps();
 
     @TestData(folder = "sortTest", jsonFile = "priceData", model = "PriceData")
-    @Test(description = "Check that product prices are within the limit")
+    @Test(description = "Check that product prices are within the limit", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void sortProductsByPrice(PriceData price) {
         headerSteps.clickCatalogButton();
         navigationSteps.clickMainListItem(price.getMainListItem());
@@ -29,7 +29,7 @@ public class SortTest extends BaseTest {
     }
 
     @TestData(jsonFile = "ascendingPriceData", model = "AscendingPriceData", folder = "sortTest")
-    @Test(description = "Sort products by ascending price")
+    @Test(description = "Sort products by ascending price", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void sortByAscendingPrice(AscendingPriceData ascendingPrice) {
         headerSteps.clickCatalogButton();
         navigationSteps.clickMainListItem(ascendingPrice.getMainListItem());

@@ -17,7 +17,6 @@ public class ProductTest extends BaseTest {
     HeaderSteps headerSteps = new HeaderSteps();
     BasketSteps basketSteps = new BasketSteps();
 
-
     @TestData(folder = "productTest", jsonFile = "searchData", model = "SearchData")
     @Test(description = "Search by product name", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void productSearch(SearchData searchData) {

@@ -16,28 +16,28 @@ public class FAQTest extends BaseTest {
     HeaderSteps headerSteps = new HeaderSteps();
     InfoSteps infoSteps = new InfoSteps();
 
-    @TestData(folder = "faqTest", jsonFile = "faqData", model = "FaqData")
+    @TestData(jsonFile = "faqData", model = "FaqData", folder = "faqTest")
     @Test(description = "Select frequently asked question", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void selectFAQ(FaqData faqData) {
         headerSteps.clickAddressButton();
         infoSteps.clickServiceMenuItem(faqData.getServiceMenuItem());
         infoSteps.clickFAQMenuItem(faqData.getFaqMenuItem());
-        infoSteps.clickDropDownTitle(faqData.getTitle());                    // without iframe
+        infoSteps.clickDropDownTitle(faqData.getTitle());
 
         Assert.assertTrue(infoSteps.isDropDownContentDisplayed(faqData.getContent()));
     }
 
-    @TestData(folder = "faqTest", jsonFile = "refundPaymentData", model = "RefundPaymentData")
+    @TestData(jsonFile = "refundPaymentData", model = "RefundPaymentData", folder = "faqTest")
     @Test(description = "Check information about refund and payment methods", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void checkRefundAndPaymentInfo(RefundPaymentData refundPayment) {
         headerSteps.clickAddressButton();
         infoSteps.clickServiceMenuItem(refundPayment.getMenuItem());
-        infoSteps.clickDropDownTitle(refundPayment.getTitle());              // with iframe
+        infoSteps.clickDropDownTitle(refundPayment.getTitle());
 
         Assert.assertTrue(infoSteps.isDropDownContentDisplayed(refundPayment.getContent()));
     }
 
-    @TestData(folder = "faqTest", jsonFile = "questionData", model = "QuestionData")
+    @TestData(jsonFile = "questionData", model = "QuestionData", folder = "faqTest")
     @Test(description = "Search for a question in the frequently asked questions", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void searchForQuestion(QuestionData questionData) {
         headerSteps.clickAddressButton();
@@ -49,7 +49,7 @@ public class FAQTest extends BaseTest {
         Assert.assertTrue(infoSteps.isFAQTitleDisplayed(questionData.getTitle()));
     }
 
-    @TestData(folder = "faqTest", jsonFile = "serviceMenuData", model = "ServiceMenuData")
+    @TestData(jsonFile = "serviceMenuData", model = "ServiceMenuData", folder = "faqTest")
     @Test(description = "Service menu navigation", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void serviceMenuNavigation(ServiceMenuData serviceMenuData) {
         headerSteps.clickAddressButton();

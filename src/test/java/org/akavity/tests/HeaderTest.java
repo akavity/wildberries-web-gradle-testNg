@@ -19,8 +19,8 @@ public class HeaderTest extends BaseTest {
     CatalogSteps catalogSteps = new CatalogSteps();
     GeoSteps geoSteps = new GeoSteps();
 
-    @TestData(folder = "headerTest", jsonFile = "catalogData", model = "CatalogData")
-    @Test(description = "Import class", dataProviderClass = JsonReader.class, dataProvider = "getData")
+    @TestData(jsonFile = "catalogData", model = "CatalogData", folder = "headerTest")
+    @Test(description = "Catalog navigation", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void catalogNavigation(CatalogData catalog) {
         headerSteps.clickCatalogButton();
         navigationSteps.clickMainListItem(catalog.getMainListItem());
@@ -30,7 +30,7 @@ public class HeaderTest extends BaseTest {
         Assert.assertEquals(actual, catalog.getTitle());
     }
 
-    @TestData(folder = "headerTest", jsonFile = "currencyData", model = "CurrencyData")
+    @TestData(jsonFile = "currencyData", model = "CurrencyData", folder = "headerTest")
     @Test(description = "Select a currency type", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void selectCurrencyType(CurrencyData currencyData) {
         headerSteps.selectCurrency(currencyData.getCurrency());
@@ -46,7 +46,7 @@ public class HeaderTest extends BaseTest {
         Assert.assertTrue(geoSteps.isPickupPointTitleDisplayed());
     }
 
-    @TestData(folder = "headerTest", jsonFile = "localWarehouseData", model = "LocalWarehouseData")
+    @TestData(jsonFile = "localWarehouseData", model = "LocalWarehouseData", folder = "headerTest")
     @Test(description = "Select a product from the local warehouse", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void selectProductFromLocalWarehouse(LocalWarehouseData belGoods) {
         headerSteps.clickCatalogButton();
@@ -58,7 +58,7 @@ public class HeaderTest extends BaseTest {
         Assert.assertEquals(actual, belGoods.getTitle());
     }
 
-    @TestData(folder = "headerTest", jsonFile = "promotionData", model = "PromotionData")
+    @TestData(jsonFile = "promotionData", model = "PromotionData", folder = "headerTest")
     @Test(description = "Select a promotion", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void selectPromotion(PromotionData promotion) {
         headerSteps.clickCatalogButton();

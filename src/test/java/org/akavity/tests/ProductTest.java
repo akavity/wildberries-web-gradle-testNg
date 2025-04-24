@@ -1,6 +1,5 @@
 package org.akavity.tests;
 
-import io.qameta.allure.Description;
 import org.akavity.annotations.TestData;
 import org.akavity.models.productTest.SearchData;
 import org.akavity.steps.*;

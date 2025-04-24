@@ -17,7 +17,7 @@ public class ProductTest extends BaseTest {
     HeaderSteps headerSteps = new HeaderSteps();
     BasketSteps basketSteps = new BasketSteps();
 
-    @TestData(folder = "productTest", jsonFile = "searchData", model = "SearchData")
+    @TestData(jsonFile = "searchData", model = "SearchData", folder = "productTest")
     @Test(description = "Search by product name", dataProviderClass = JsonReader.class, dataProvider = "getData")
     public void productSearch(SearchData searchData) {
         headerSteps.enterTextInSearchField(searchData.getText());
@@ -26,8 +26,7 @@ public class ProductTest extends BaseTest {
         Assert.assertTrue(catalogSteps.doProductNamesContainText(searchData.getText()));
     }
 
-    @Test
-    @Description("View reviews")
+    @Test(description = "View reviews")
     public void viewReviews() {
         catalogSteps.selectFirstProductCard();
         productSteps.clickViewAllCommentsButton();
@@ -35,8 +34,7 @@ public class ProductTest extends BaseTest {
         Assert.assertTrue(userActivitySteps.isFeedbackButtonDisplayed());
     }
 
-    @Test
-    @Description("View Questions")
+    @Test(description = "View Questions")
     public void viewQuestions() {
         catalogSteps.selectFirstProductCard();
         productSteps.clickQuestionsButton();
@@ -45,8 +43,7 @@ public class ProductTest extends BaseTest {
         Assert.assertTrue(userActivitySteps.isQuestionTitleDisplayed());
     }
 
-    @Test
-    @Description("Open product popup")
+    @Test(description = "Open product popup")
     public void openProductPopup() {
         String cardBrand = catalogSteps.getFirstProductCardBrand();
         double cardPrice = catalogSteps.getFirstProductCardPrice();
@@ -59,8 +56,7 @@ public class ProductTest extends BaseTest {
         Assert.assertEquals(cardPrice, popupPrice);
     }
 
-    @Test
-    @Description("Add product to basket")
+    @Test(description = "Add product to basket")
     public void addProductToBasket() {
         double cardPrice = catalogSteps.getFirstProductCardPrice();
         catalogSteps.clickFirstButtonAddToBasket();

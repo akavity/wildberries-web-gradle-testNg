@@ -36,10 +36,34 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 test {
-    useTestNG() {
-        suites 'src/test/resources/testNg.xml'
+    useTestNG {
+        systemProperty 'file.encoding', 'UTF-8'
+        ignoreFailures = true
+        systemProperties System.getProperties()
+
+        doFirst {
+            def suiteParam = project.findProperty('suite') ?: 'default'
+
+            if (!suiteParam) {
+                throw new GradleException("Please specify the parameter -Psuite=suites_name (for example: -Psuite=ui)")
+            }
+
+            def suiteMap = [
+                    'default'        : 'src/test/resources/default.xml',
+                    'docker_test'    : 'src/test/resources/docker_test.xml',
+                    'local_sort_test': 'src/test/resources/local_sort_test.xml',
+            ]
+
+            def selectedSuite = suiteMap[suiteParam]
+
+            if (!selectedSuite) {
+                throw new GradleException("Unknown suite name: '$suiteParam'. Possible values: ${suiteMap.keySet()}")
+            }
+
+            println "Launching the suite: $selectedSuite"
+            useTestNG {
+                suites selectedSuite
+            }
+        }
     }
-    systemProperty 'file.encoding', 'UTF-8'
-    ignoreFailures = true
-    systemProperties System.getProperties()
 }

@@ -23,7 +23,6 @@
 * Test 19. Sort products by rating.
 * Test 20. Sort products by benefit.
 
-
 ## Technologies:
 
 * Java 17
@@ -34,6 +33,26 @@
 * Apache Log4j 2.24.3
 * Gson 2.12.0
 * Project Lombok 1.18.36
+
+## Launch:
+
+to run default test go to project dir and run:
+
+```
+gradle clean test
+```
+
+to run sort tests in a local Chrome browser:
+
+```
+gradle clean test -Psuite=local_sort_test
+```
+
+to run tests in a Docker Selenoid browser:
+
+```
+gradle clean test -Psuite=docker_test
+```
 
 ## Report:
 
